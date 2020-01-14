@@ -38,4 +38,8 @@ public class DirectedGraph<T> {
 
         return !(neighbors.add(neighbor) && neighbors.remove(neighbor));
     }
+
+    public int totalNodes() {
+        return this.adjacencies.size();
+    }
 }
