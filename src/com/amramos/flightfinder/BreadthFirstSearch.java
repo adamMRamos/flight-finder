@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 public class BreadthFirstSearch {
     public static <T> boolean pathExists(
             DirectedGraph<T> graph, T from, T to) {
+
         LinkedList<T> queue = new LinkedList<>();
         Consumer<T> pushOntoQueue = pushOntoQueueIfNotVisited(graph, queue);
 

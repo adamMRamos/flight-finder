@@ -1,4 +1,4 @@
-package com.amramos.flightfinder.tests;
+package com.amramos.flightfinder.tests.unit;
 
 import com.amramos.flightfinder.DirectedGraph;
 import org.junit.Assert;
