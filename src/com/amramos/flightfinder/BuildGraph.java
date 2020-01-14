@@ -15,13 +15,13 @@ public class BuildGraph {
     private static Consumer<String> addEdgeToGraph(
             DirectedGraph<String> graph) {
         return line -> {
-            Pair<Node<String>, Node<String>> edge = toEdge(line);
+            Pair<String, String> edge = toEdge(line);
             if (edge != null)
                 graph.add(edge.getKey(), edge.getValue());
         };
     }
 
-    private static Pair<Node<String>, Node<String>> toEdge(String line) {
+    private static Pair<String, String> toEdge(String line) {
         String parent = null;
         String neighbor = null;
         String[] edge = line.split(",");
@@ -32,7 +32,7 @@ public class BuildGraph {
         }
 
         if (isNotNullOrEmpty(parent) && isNotNullOrEmpty(neighbor))
-            return new Pair<>(Node.of(parent), Node.of(neighbor));
+            return new Pair<>(parent, neighbor);
         else
             return null;
     }

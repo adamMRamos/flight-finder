@@ -16,10 +16,10 @@ public class BuildGraphTests {
                 "A,B\nB,C\nD,C\nE,F"));
         DirectedGraph<String> graph = BuildGraph.from(edgeList);
 
-        Assert.assertTrue(graph.isNeighbor(Node.of("A"), Node.of("B")));
-        Assert.assertTrue(graph.isNeighbor(Node.of("B"), Node.of("C")));
-        Assert.assertTrue(graph.isNeighbor(Node.of("D"), Node.of("C")));
-        Assert.assertTrue(graph.isNeighbor(Node.of("E"), Node.of("F")));
+        Assert.assertTrue(graph.isNeighbor("A", "B"));
+        Assert.assertTrue(graph.isNeighbor("B", "C"));
+        Assert.assertTrue(graph.isNeighbor("D", "C"));
+        Assert.assertTrue(graph.isNeighbor("E", "F"));
         Assert.assertEquals(6, graph.totalNodes());
     }
 
@@ -29,7 +29,7 @@ public class BuildGraphTests {
                 "A,A"));
         DirectedGraph<String> graph = BuildGraph.from(withLoopedBackEdge);
 
-        Assert.assertTrue(graph.isNeighbor(Node.of("A"), Node.of("A")));
+        Assert.assertTrue(graph.isNeighbor("A", "A"));
         Assert.assertEquals(1, graph.totalNodes());
     }
 
@@ -39,9 +39,9 @@ public class BuildGraphTests {
                 "A,B\nB,C D E\nC D E,F"));
         DirectedGraph<String> graph = BuildGraph.from(multiCharacterEdges);
 
-        Assert.assertTrue(graph.isNeighbor(Node.of("A"), Node.of("B")));
-        Assert.assertTrue(graph.isNeighbor(Node.of("B"), Node.of("C D E")));
-        Assert.assertTrue(graph.isNeighbor(Node.of("C D E"), Node.of("F")));
+        Assert.assertTrue(graph.isNeighbor("A", "B"));
+        Assert.assertTrue(graph.isNeighbor("B", "C D E"));
+        Assert.assertTrue(graph.isNeighbor("C D E", "F"));
         Assert.assertEquals(4, graph.totalNodes());
     }
 
@@ -51,10 +51,10 @@ public class BuildGraphTests {
                 "A,B\nC,   \n   ,D"));
         DirectedGraph<String> graph = BuildGraph.from(whiteSpaces);
 
-        Assert.assertTrue(graph.isNeighbor(Node.of("A"), Node.of("B")));
+        Assert.assertTrue(graph.isNeighbor("A", "B"));
 
-        Assert.assertFalse(graph.isNeighbor(Node.of("C"), Node.of("   ")));
-        Assert.assertFalse(graph.isNeighbor(Node.of("   "), Node.of("D")));
+        Assert.assertFalse(graph.isNeighbor("C", "   "));
+        Assert.assertFalse(graph.isNeighbor("   ", "D"));
         Assert.assertEquals(2, graph.totalNodes());
     }
 
@@ -64,9 +64,9 @@ public class BuildGraphTests {
                 " A ,B\nB, C \nC,D"));
         DirectedGraph<String> graph = BuildGraph.from(trimsWhiteSpaces);
 
-        Assert.assertTrue(graph.isNeighbor(Node.of("A"), Node.of("B")));
-        Assert.assertTrue(graph.isNeighbor(Node.of("B"), Node.of("C")));
-        Assert.assertTrue(graph.isNeighbor(Node.of("C"), Node.of("D")));
+        Assert.assertTrue(graph.isNeighbor("A", "B"));
+        Assert.assertTrue(graph.isNeighbor("B", "C"));
+        Assert.assertTrue(graph.isNeighbor("C", "D"));
         Assert.assertEquals(4, graph.totalNodes());
     }
 
@@ -76,8 +76,8 @@ public class BuildGraphTests {
                 "A,B\nB C"));
         DirectedGraph<String> graph = BuildGraph.from(withInvalidLine);
 
-        Assert.assertTrue(graph.isNeighbor(Node.of("A"), Node.of("B")));
-        Assert.assertFalse(graph.isNeighbor(Node.of("B"), Node.of("C")));
+        Assert.assertTrue(graph.isNeighbor("A", "B"));
+        Assert.assertFalse(graph.isNeighbor("B", "C"));
         Assert.assertEquals(2, graph.totalNodes());
     }
 
@@ -87,12 +87,12 @@ public class BuildGraphTests {
                 "AB\nC,\nD\nH,I\nE.F\n   "));
         DirectedGraph<String> graph = BuildGraph.from(withInvalidLines);
 
-        Assert.assertTrue(graph.isNeighbor(Node.of("H"), Node.of("I")));
+        Assert.assertTrue(graph.isNeighbor("H", "I"));
 
-        Assert.assertFalse(graph.isNeighbor(Node.of("A"), Node.of("B")));
-        Assert.assertFalse(graph.isNeighbor(Node.of("C"), Node.of("D")));
-        Assert.assertFalse(graph.isNeighbor(Node.of("D"), Node.of("E")));
-        Assert.assertFalse(graph.isNeighbor(Node.of("E"), Node.of("F")));
+        Assert.assertFalse(graph.isNeighbor("A", "B"));
+        Assert.assertFalse(graph.isNeighbor("C", "D"));
+        Assert.assertFalse(graph.isNeighbor("D", "E"));
+        Assert.assertFalse(graph.isNeighbor("E", "F"));
         Assert.assertEquals(2, graph.totalNodes());
     }
 }

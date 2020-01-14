@@ -2,7 +2,6 @@ package com.amramos.flightfinder.tests;
 
 import com.amramos.flightfinder.BreadthFirstSearch;
 import com.amramos.flightfinder.DirectedGraph;
-import com.amramos.flightfinder.Node;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,40 +12,40 @@ public class BreadthFirstSearchTests {
     @Before
     public void init() {
         graph = DirectedGraph.fresh();
-        graph.add(Node.of("A"), Node.of("B"));
-        graph.add(Node.of("B"), Node.of("C"));
-        graph.add(Node.of("D"), Node.of("C"));
+        graph.add("A", "B");
+        graph.add("B", "C");
+        graph.add("D", "C");
     }
 
     @Test
     public void pathExists_thereIsAPath_true() {
         Assert.assertTrue(BreadthFirstSearch.pathExists(
                 graph,
-                Node.of("A"),
-                Node.of("C")));
+                "A",
+                "C"));
     }
 
     @Test
     public void pathExists_thereIsNoPath_false() {
         Assert.assertFalse(BreadthFirstSearch.pathExists(
                 graph,
-                Node.of("A"),
-                Node.of("D")));
+                "A",
+                "D"));
     }
 
     @Test
     public void pathExists_startExistsEndDoesNot_false() {
         Assert.assertFalse(BreadthFirstSearch.pathExists(
                 graph,
-                Node.of("A"),
-                Node.of("E")));
+                "A",
+                "E"));
     }
 
     @Test
     public void pathExists_startDoesNotExistEndDoes_false() {
         Assert.assertFalse(BreadthFirstSearch.pathExists(
                 graph,
-                Node.of("E"),
-                Node.of("C")));
+                "E",
+                "C"));
     }
 }

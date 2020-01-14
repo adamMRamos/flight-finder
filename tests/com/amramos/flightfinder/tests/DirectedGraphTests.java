@@ -8,8 +8,8 @@ import org.junit.Test;
 public class DirectedGraphTests {
     @Test
     public void isNeighbor_parentAndNeighbor_areNeighborsButNeighborIsNotAParent() {
-        Node<String> parent = Node.of("A");
-        Node<String> neighbor = Node.of("1");
+        String parent = "A";
+        String neighbor = "1";
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
         graph.add(parent, neighbor);
@@ -20,9 +20,9 @@ public class DirectedGraphTests {
 
     @Test
     public void isNeighbor_parentWithTwoDifferentNeighbor_hasBothNeighbors() {
-        Node<String> parent = Node.of("A");
-        Node<String> neighbor1 = Node.of("1");
-        Node<String> neighbor2 = Node.of("2");
+        String parent = "A";
+        String neighbor1 = "1";
+        String neighbor2 = "2";
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
         graph.add(parent, neighbor1);
@@ -36,11 +36,11 @@ public class DirectedGraphTests {
 
     @Test
     public void isNeighbor_twoDifferentParents_bothExistButNotNeighborsWithEachOther() {
-        Node<String> parent1 = Node.of("A");
-        Node<String> neighbor1 = Node.of("1");
+        String parent1 = "A";
+        String neighbor1 = "1";
 
-        Node<String> parent2 = Node.of("B");
-        Node<String> neighbor2 = Node.of("2");
+        String parent2 = "B";
+        String neighbor2 = "2";
 
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
@@ -56,9 +56,9 @@ public class DirectedGraphTests {
 
     @Test
     public void isNeighbor_twoDifferentParentsWithSameNeighbor_bothHaveSameNeighborButNeighborIsNotParentOfEither() {
-        Node<String> parent1 = Node.of("A");
-        Node<String> parent2 = Node.of("B");
-        Node<String> neighbor = Node.of("1");
+        String parent1 = "A";
+        String parent2 = "B";
+        String neighbor = "1";
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
         graph.add(parent1, neighbor);
@@ -73,21 +73,21 @@ public class DirectedGraphTests {
 
     @Test
     public void isNeighbor_twoParentsWithDifferentNeighborSameData_bothHaveSameNeighbor() {
-        Node<String> parent1 = Node.of("A");
-        Node<String> parent2 = Node.of("B");
-        Node<String> sameNeighbor1 = Node.of("1");
+        String parent1 = "A";
+        String parent2 = "B";
+        String sameNeighbor1 = "1";
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
         graph.add(parent1, sameNeighbor1);
         graph.add(parent2, sameNeighbor1);
 
-        Assert.assertTrue(graph.isNeighbor(parent1, Node.of("1")));
-        Assert.assertTrue(graph.isNeighbor(parent2, Node.of("1")));
+        Assert.assertTrue(graph.isNeighbor(parent1, "1"));
+        Assert.assertTrue(graph.isNeighbor(parent2, "1"));
     }
 
     @Test
     public void isNeighbor_parentNeighborToItself_isTrue() {
-        Node<String> parent = Node.of("A");
+        String parent = "A";
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
         graph.add(parent, parent);
@@ -97,7 +97,7 @@ public class DirectedGraphTests {
 
     @Test
     public void isNeighbor_parentAndNull_parentNotANeighborWithNull() {
-        Node<String> parent = Node.of("A");
+        String parent = "A";
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
         graph.add(parent, null);
@@ -108,7 +108,7 @@ public class DirectedGraphTests {
 
     @Test
     public void isNeighbor_nullAndNeighbor_nullIsNotANeighborWithParent() {
-        Node<String> neighbor = Node.of("A");
+        String neighbor = "A";
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
         graph.add(null, neighbor);
@@ -119,7 +119,7 @@ public class DirectedGraphTests {
 
     @Test
     public void neighbors_parentAndNull_parentHasNoNeighbors() {
-        Node<String> parent = Node.of("A");
+        String parent = "A";
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
         graph.add(parent, null);
@@ -129,7 +129,7 @@ public class DirectedGraphTests {
 
     @Test
     public void neighbors_nullAndNeighbor_nullHasNoNeighbors() {
-        Node<String> neighbor = Node.of("A");
+        String neighbor = "A";
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
         graph.add(null, neighbor);
@@ -139,32 +139,32 @@ public class DirectedGraphTests {
 
     @Test
     public void neighbors_parentHasOneNeighbor_returnsOneNeighbor() {
-        Node<String> parent = Node.of("A");
+        String parent = "A";
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
-        graph.add(parent, Node.of("B"));
+        graph.add(parent, "B");
 
         Assert.assertEquals(1, graph.neighbors(parent).size());
     }
 
     @Test
     public void neighbors_parentHasTwoNeighbors_returnsTwoNeighbors() {
-        Node<String> parent = Node.of("A");
+        String parent = "A";
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
-        graph.add(parent, Node.of("B"));
-        graph.add(parent, Node.of("C"));
+        graph.add(parent, "B");
+        graph.add(parent, "C");
 
         Assert.assertEquals(2, graph.neighbors(parent).size());
     }
 
     @Test
     public void neighbors_parentHasTwoSameNeighbors_returnsOneNeighbor() {
-        Node<String> parent = Node.of("A");
+        String parent = "A";
         DirectedGraph<String> graph = DirectedGraph.fresh();
 
-        graph.add(parent, Node.of("B"));
-        graph.add(parent, Node.of("B"));
+        graph.add(parent, "B");
+        graph.add(parent, "B");
 
         Assert.assertEquals(1, graph.neighbors(parent).size());
     }
