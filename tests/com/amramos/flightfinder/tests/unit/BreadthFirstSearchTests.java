@@ -26,6 +26,14 @@ public class BreadthFirstSearchTests {
     }
 
     @Test
+    public void pathExists_thereIsAPathFromNodeToItself_false() {
+        Assert.assertTrue(BreadthFirstSearch.pathExists(
+                graph,
+                "A",
+                "A"));
+    }
+
+    @Test
     public void pathExists_thereIsNoPath_false() {
         Assert.assertFalse(BreadthFirstSearch.pathExists(
                 graph,

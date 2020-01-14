@@ -1,6 +1,5 @@
 package com.amramos.flightfinder;
 
-import com.sun.deploy.util.StringUtils;
 import javafx.util.Pair;
 import java.io.BufferedReader;
 import java.util.function.Consumer;
@@ -27,8 +26,8 @@ public class BuildGraph {
         String[] edge = line.split(",");
 
         if (edge.length > 1) {
-            parent = StringUtils.trimWhitespace(edge[0]);
-            neighbor = StringUtils.trimWhitespace(edge[1]);
+            parent = edge[0].trim();
+            neighbor = edge[1].trim();
         }
 
         if (isNotNullOrEmpty(parent) && isNotNullOrEmpty(neighbor))

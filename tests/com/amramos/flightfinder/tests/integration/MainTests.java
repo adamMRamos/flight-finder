@@ -6,9 +6,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class MainTests {
+    String testFile = "tests/test_files/input1.csv";
+
     @Test
     public void run_fileExistsAndThereIsAPath_returnsTrue() {
-        String[] args = { "test_files/input1.csv", "New York", "Montreal" };
+        String[] args = { testFile, "New York", "Montreal" };
 
         Pair<Boolean, String> result = Main.run(args);
 
@@ -17,9 +19,9 @@ public class MainTests {
 
     @Test
     public void run_fileExistsAndThereIsNoPath_returnsFalse() {
-        String[] noPathFromMontrealToNewYork = { "test_files/input1.csv", "Montreal", "New York" };
-        String[] noPathFromNewYorkToParis = { "test_files/input1.csv", "New York", "Paris" };
-        String[] noPathFromNewYorkToUnknown = { "test_files/input1.csv", "New York", "Unknown" };
+        String[] noPathFromMontrealToNewYork = { testFile, "Montreal", "New York" };
+        String[] noPathFromNewYorkToParis = { testFile, "New York", "Paris" };
+        String[] noPathFromNewYorkToUnknown = { testFile, "New York", "Unknown" };
 
         Assert.assertFalse(Main.run(noPathFromMontrealToNewYork).getKey());
         Assert.assertFalse(Main.run(noPathFromNewYorkToParis).getKey());
@@ -48,7 +50,7 @@ public class MainTests {
 
     @Test
     public void run_missingTwoArguments_returnsError() {
-        String[] missingTwoArguments = { "test_files/input1.csv" };
+        String[] missingTwoArguments = { testFile };
 
         Pair<Boolean, String> result = Main.run(missingTwoArguments);
 
