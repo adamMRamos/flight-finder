@@ -43,11 +43,20 @@ public class DirectedGraph<T> {
         return !(neighbors.add(neighbor) && neighbors.remove(neighbor));
     }
 
+    public void visit(T node) {
+        state(node).isVisited = true;
+    }
+
+    public boolean isVisited(T node) {
+        return state(node).isVisited;
+    }
+
     public int totalNodes() {
         return this.adjacencies.size();
     }
 
     private static final class State<T> {
+        boolean isVisited = false;
         Set<T> neighbors = new HashSet<>();
     }
 }
