@@ -3,7 +3,7 @@ package com.amramos.flightfinder;
 import java.util.*;
 
 public class DirectedGraph<T> {
-    Map<T, Set<T>> adjacencies;
+    private Map<T, State<T>> adjacencies;
 
     public static <T> DirectedGraph<T> fresh() {
         return new DirectedGraph<>();
@@ -11,26 +11,30 @@ public class DirectedGraph<T> {
     private DirectedGraph() { adjacencies = new HashMap<>(); }
 
     public void add(T parent, T neighbor) {
-        Set<T> neighbors = neighbors(parent);
+        State<T> state = state(parent);
 
         if (neighbor != null)
-            neighbors.add(neighbor);
+            state.neighbors.add(neighbor);
 
         if (parent != null) {
-            adjacencies.put(parent, neighbors);
+            adjacencies.put(parent, state);
             addSingleNode(neighbor);
         }
     }
 
     private void addSingleNode(T node) {
         if (node != null)
-            adjacencies.put(node, neighbors(node));
+            adjacencies.put(node, state(node));
     }
 
     public Set<T> neighbors(T node) {
-        Set<T> neighbors = adjacencies.get(node);
+        return state(node).neighbors;
+    }
 
-        return neighbors != null ? neighbors : new HashSet<>();
+    private State<T> state(T node) {
+        State<T> neighbors = adjacencies.get(node);
+
+        return neighbors != null ? neighbors : new State<>();
     }
 
     public boolean isNeighbor(T parent, T neighbor) {
@@ -41,5 +45,9 @@ public class DirectedGraph<T> {
 
     public int totalNodes() {
         return this.adjacencies.size();
+    }
+
+    private static final class State<T> {
+        Set<T> neighbors = new HashSet<>();
     }
 }
