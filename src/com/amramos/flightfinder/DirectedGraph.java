@@ -32,9 +32,9 @@ public class DirectedGraph<T> {
     }
 
     private State<T> state(T node) {
-        State<T> neighbors = adjacencies.get(node);
+        State<T> state = adjacencies.get(node);
 
-        return neighbors != null ? neighbors : new State<>();
+        return state != null ? state : new State<>();
     }
 
     public boolean isNeighbor(T parent, T neighbor) {
