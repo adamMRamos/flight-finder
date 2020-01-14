@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 
 public class BuildGraph {
     public static DirectedGraph<String> from(BufferedReader file) {
-        return null;
+        DirectedGraph<String> graph = DirectedGraph.fresh();
+        file.lines().forEach(System.out::println);
+        return graph;
     }
 }

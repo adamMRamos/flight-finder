@@ -1,13 +1,24 @@
 package com.amramos.flightfinder;
 
-import java.io.Serializable;
+public class Node<T> {
+    public final T data;
+    private boolean visited = false;
 
-public class Node<T> implements Serializable {
+    public static <T> Node<T> of(T data) { return new Node<>(data); }
+    private Node(T data) { this.data = data; }
 
-    public static <T> Node<T> of(T data) { return new Node<>(); }
-    private Node() { }
+    public void visit() { this.visited = true; }
 
-    public void visit() { }
+    public boolean visited() { return visited; }
 
-    public boolean visited() { return false; }
+    @Override
+    public int hashCode() {
+        return data.hashCode() * 13;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Node<?> &&
+                data.equals(((Node<?>) obj).data);
+    }
 }

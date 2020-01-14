@@ -12,7 +12,7 @@ public class BreadthFirstSearchTests {
 
     @Before
     public void init() {
-        graph = new DirectedGraph<>();
+        graph = DirectedGraph.fresh();
         graph.add(Node.of("A"), Node.of("B"));
         graph.add(Node.of("B"), Node.of("C"));
         graph.add(Node.of("D"), Node.of("C"));

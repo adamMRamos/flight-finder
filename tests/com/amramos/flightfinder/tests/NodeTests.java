@@ -34,15 +34,4 @@ public class NodeTests {
 
         Assert.assertNotEquals(node1, node2);
     }
-
-    @Test
-    public void equals_nodesWithSameDataDifferentVisited_doNotEqualEachOther() {
-        String sameData = "A";
-        Node<String> node1 = Node.of(sameData);
-        Node<String> node2 = Node.of(sameData);
-
-        node1.visit();
-
-        Assert.assertNotEquals(node1, node2);
-    }
 }

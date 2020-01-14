@@ -24,12 +24,10 @@ public class BuildGraphTests {
     public void from_edgeList_hasAllEdges() {
         DirectedGraph<String> graph = BuildGraph.from(edgeList);
 
-        Assert.assertTrue(Stream.of(
-                graph.isNeighbor(Node.of("A"), Node.of("B")),
-                graph.isNeighbor(Node.of("B"), Node.of("C")),
-                graph.isNeighbor(Node.of("D"), Node.of("C")),
-                graph.isNeighbor(Node.of("E"), Node.of("F")))
-                .allMatch(isNeighbor -> isNeighbor));
+        Assert.assertTrue(graph.isNeighbor(Node.of("A"), Node.of("B")));
+        Assert.assertTrue(graph.isNeighbor(Node.of("B"), Node.of("C")));
+        Assert.assertTrue(graph.isNeighbor(Node.of("D"), Node.of("C")));
+        Assert.assertTrue(graph.isNeighbor(Node.of("E"), Node.of("F")));
     }
 
     @Test
@@ -52,11 +50,10 @@ public class BuildGraphTests {
         DirectedGraph<String> graph = BuildGraph.from(withInvalidLines);
 
         Assert.assertTrue(graph.isNeighbor(Node.of("H"), Node.of("I")));
-        Assert.assertTrue(Stream.of(
-                graph.isNeighbor(Node.of("A"), Node.of("B")),
-                graph.isNeighbor(Node.of("C"), Node.of("D")),
-                graph.isNeighbor(Node.of("D"), Node.of("E")),
-                graph.isNeighbor(Node.of("E"), Node.of("F")))
-                .noneMatch(isNeighbor -> isNeighbor));
+
+        Assert.assertFalse(graph.isNeighbor(Node.of("A"), Node.of("B")));
+        Assert.assertFalse(graph.isNeighbor(Node.of("C"), Node.of("D")));
+        Assert.assertFalse(graph.isNeighbor(Node.of("D"), Node.of("E")));
+        Assert.assertFalse(graph.isNeighbor(Node.of("E"), Node.of("F")));
     }
 }
