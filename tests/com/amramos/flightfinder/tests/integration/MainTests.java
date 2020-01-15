@@ -59,7 +59,7 @@ public class MainTests {
     }
 
     @Test
-    public void run_allArguments_returnsError() {
+    public void run_missingAllArguments_returnsError() {
         String[] missingAllArguments = {};
 
         Pair<Boolean, String> result = Main.run(missingAllArguments);
