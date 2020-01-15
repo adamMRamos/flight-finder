@@ -15,6 +15,7 @@ public class MainTests {
         Pair<Boolean, String> result = Main.run(args);
 
         Assert.assertTrue(result.getKey());
+        Assert.assertTrue(result.getValue().isEmpty());
     }
 
     @Test
