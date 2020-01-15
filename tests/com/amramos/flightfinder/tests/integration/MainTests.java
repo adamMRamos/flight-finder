@@ -1,7 +1,7 @@
 package com.amramos.flightfinder.tests.integration;
 
 import com.amramos.flightfinder.Main;
-import javafx.util.Pair;
+import com.amramos.flightfinder.Pair;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,8 +14,8 @@ public class MainTests {
 
         Pair<Boolean, String> result = Main.run(args);
 
-        Assert.assertTrue(result.getKey());
-        Assert.assertTrue(result.getValue().isEmpty());
+        Assert.assertTrue(result.item1());
+        Assert.assertTrue(result.item2().isEmpty());
     }
 
     @Test
@@ -24,9 +24,9 @@ public class MainTests {
         String[] noPathFromNewYorkToParis = { testFile, "New York", "Paris" };
         String[] noPathFromNewYorkToUnknown = { testFile, "New York", "Unknown" };
 
-        Assert.assertFalse(Main.run(noPathFromMontrealToNewYork).getKey());
-        Assert.assertFalse(Main.run(noPathFromNewYorkToParis).getKey());
-        Assert.assertFalse(Main.run(noPathFromNewYorkToUnknown).getKey());
+        Assert.assertFalse(Main.run(noPathFromMontrealToNewYork).item1());
+        Assert.assertFalse(Main.run(noPathFromNewYorkToParis).item1());
+        Assert.assertFalse(Main.run(noPathFromNewYorkToUnknown).item1());
     }
 
     @Test
@@ -35,8 +35,8 @@ public class MainTests {
 
         Pair<Boolean, String> result = Main.run(fileDoesNotExist);
 
-        Assert.assertFalse(result.getKey());
-        Assert.assertFalse(result.getValue().isEmpty());
+        Assert.assertFalse(result.item1());
+        Assert.assertFalse(result.item2().isEmpty());
     }
 
     @Test
@@ -45,8 +45,8 @@ public class MainTests {
 
         Pair<Boolean, String> result = Main.run(missingOneArgument);
 
-        Assert.assertFalse(result.getKey());
-        Assert.assertFalse(result.getValue().isEmpty());
+        Assert.assertFalse(result.item1());
+        Assert.assertFalse(result.item2().isEmpty());
     }
 
     @Test
@@ -55,8 +55,8 @@ public class MainTests {
 
         Pair<Boolean, String> result = Main.run(missingTwoArguments);
 
-        Assert.assertFalse(result.getKey());
-        Assert.assertFalse(result.getValue().isEmpty());
+        Assert.assertFalse(result.item1());
+        Assert.assertFalse(result.item2().isEmpty());
     }
 
     @Test
@@ -65,7 +65,7 @@ public class MainTests {
 
         Pair<Boolean, String> result = Main.run(missingAllArguments);
 
-        Assert.assertFalse(result.getKey());
-        Assert.assertFalse(result.getValue().isEmpty());
+        Assert.assertFalse(result.item1());
+        Assert.assertFalse(result.item2().isEmpty());
     }
 }

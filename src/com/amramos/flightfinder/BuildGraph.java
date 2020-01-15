@@ -1,6 +1,5 @@
 package com.amramos.flightfinder;
 
-import javafx.util.Pair;
 import java.io.BufferedReader;
 import java.util.function.Consumer;
 
@@ -43,7 +42,7 @@ public class BuildGraph {
         return line -> {
             Pair<String, String> edge = toEdge(line);
             if (edge != null)
-                graph.add(edge.getKey(), edge.getValue());
+                graph.add(edge.item1(), edge.item2());
         };
     }
 
@@ -72,7 +71,7 @@ public class BuildGraph {
         // Only return a new pair if both the parent and neighbor are neither
         // null nor empty.
         if (isNotNullOrEmpty(parent) && isNotNullOrEmpty(neighbor))
-            return new Pair<>(parent, neighbor);
+            return Pair.of(parent, neighbor);
         else
             return null;
     }

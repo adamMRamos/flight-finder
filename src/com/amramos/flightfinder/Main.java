@@ -1,6 +1,5 @@
 package com.amramos.flightfinder;
 
-import javafx.util.Pair;
 import java.io.*;
 import java.util.function.Function;
 
@@ -23,8 +22,8 @@ public class Main {
      */
     public static void main(String[] args) {
         Pair<Boolean, String> result = run(args);
-        boolean answer = result.getKey();
-        String error = result.getValue();
+        boolean answer = result.item1();
+        String error = result.item2();
 
         if (error.isEmpty())
             System.out.println(answer);
@@ -48,7 +47,7 @@ public class Main {
     public static Pair<Boolean, String> run(String[] args) {
         // terminate the program if there are less than 3 parameters
         if (args.length < 3) {
-            return new Pair<>(
+            return Pair.of(
                     false,
                     "\nError: wrong number of arguments" +
                             "\nExpected: 3, Actual: " + args.length + "\n");
@@ -64,8 +63,8 @@ public class Main {
             Pair<DirectedGraph<String>, String> result =
                     buildGraph(file, failedToReadFile);
 
-            DirectedGraph<String> graph = result.getKey();
-            String errors = result.getValue();
+            DirectedGraph<String> graph = result.item1();
+            String errors = result.item2();
 
             // Perform bfs on the graph. If the file read failed then the graph
             // will be empty and bfs will return false.
@@ -74,7 +73,7 @@ public class Main {
                     start,
                     end);
 
-            return new Pair<>(flightExists, errors);
+            return Pair.of(flightExists, errors);
         }
     }
 
@@ -91,9 +90,9 @@ public class Main {
             Function<IOException, String> onError) {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            return new Pair<>(BuildGraph.from(reader), "");
+            return Pair.of(BuildGraph.from(reader), "");
         } catch (IOException e) {
-            return new Pair<>(DirectedGraph.fresh(), onError.apply(e));
+            return Pair.of(DirectedGraph.fresh(), onError.apply(e));
         }
     }
 }

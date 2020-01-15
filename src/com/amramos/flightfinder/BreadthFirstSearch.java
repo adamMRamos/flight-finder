@@ -23,17 +23,14 @@ public class BreadthFirstSearch {
      */
     public static <T> boolean pathExists(DirectedGraph<T> graph, T from, T to) {
         LinkedList<T> queue = new LinkedList<>();
-        Consumer<T> pushOntoQueue = pushOntoQueueIfNotVisited(graph, queue);
+        Consumer<T> enqueue = visitAndEnqueueIfNotVisited(graph, queue);
 
         // push the start node onto the queue
-        queue.push(from);
+        enqueue.accept(from);
 
         // continue the algorithm as long as there are more nodes to visit
-        while (!queue.isEmpty()) {
-            T next = queue.pop();
-            graph.visit(next);
-            graph.neighbors(next).forEach(pushOntoQueue);
-        }
+        while (!queue.isEmpty())
+            graph.neighbors(queue.pop()).forEach(enqueue);
 
         return graph.isVisited(to);
     }
@@ -46,12 +43,14 @@ public class BreadthFirstSearch {
      * @param <T> the type of data in the graph
      * @return the Consumer that pushed new nodes onto a queue.
      */
-    public static <T> Consumer<T> pushOntoQueueIfNotVisited(
+    public static <T> Consumer<T> visitAndEnqueueIfNotVisited(
             DirectedGraph<T> graph,
             LinkedList<T> queue) {
         return node -> {
-            if (!graph.isVisited(node))
+            if (!graph.isVisited(node)) {
+                graph.visit(node);
                 queue.push(node);
+            }
         };
     }
 }
