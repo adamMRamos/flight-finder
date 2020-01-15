@@ -3,3 +3,4 @@ flight_finder.iml
 out
 src/META-INF/
 flight-finder.iml
+.DS_Store
