@@ -17,6 +17,7 @@ import java.util.function.Consumer;
  * C will not get added to the graph but A and B will.
  */
 public class BuildGraph {
+
     /**
      * Read and parse a file into a graph. Any runtime errors that occur while
      * reading the file will get thrown up to the caller.

@@ -8,6 +8,7 @@ import java.util.function.Consumer;
  * on a directed graph.
  */
 public class BreadthFirstSearch {
+
     /**
      * Determine if a path exists from a given start node to an end node. The
      * algorithm does not terminate upon finding the end node and will visit
